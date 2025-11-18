@@ -1,6 +1,6 @@
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import NavBar from "../components/navbar";
+import NavBar from "../components/NavBar.jsx";
 
 import matrix from "../assets/movie_posters/matrix.jpg";
 import ablcc from "../assets/movie_posters/all_about_lily_chou_chou.jpg";

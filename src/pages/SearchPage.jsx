@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import NavBar from "../components/navbar";
+import NavBar from "../components/NavBar.jsx";
 import { useLocation } from "react-router-dom";
 
 const apiKey = import.meta.env.VITE_API_KEY;
