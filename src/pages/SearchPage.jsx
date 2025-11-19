@@ -16,7 +16,7 @@ export default function SearchPage() {
 
       const res = await fetch(
         `https://www.omdbapi.com/?apikey=${apiKey}&s=${query}`
-      );
+      );  
       const data = await res.json();
 
       if (!data.Search) {
@@ -38,6 +38,8 @@ export default function SearchPage() {
 
     fetchMovies();
   }, [query]);
+
+  const [expanded, setExpanded] = useState();
 
   return (
     <div className="min-h-screen w-full pb-20 

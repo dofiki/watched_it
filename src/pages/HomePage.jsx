@@ -32,7 +32,7 @@ function HomePage() {
             Discover Your Next Favourite Movies
           </h6>
 
-          <p className="text-gray-400 text-[1rem] text-center pt-2 pl-2 pr-2">
+          <p className="text-gray-400 text-[1rem] text-center pt-2 pl-5 pr-5">
             Track, organize movies that are worth watching !
           </p>
         </div>
@@ -64,36 +64,36 @@ function HomePage() {
           <div className="relative h-96 w-full flex justify-center items-center">
             <img
               src={ablcc}
-              className="w-30 sm:w-48 md:w-60 h-55 sm:h-80 md:h-96 rounded-md absolute
+              className="w-40 sm:w-48 md:w-60 h-75 sm:h-80 md:h-96 rounded-md absolute
               -rotate-20 bottom-0 sm:-bottom-16 md:-bottom-20 -translate-x-20 sm:-translate-x-36
               md:-translate-x-72 z-10 hover:-bottom-5 transition-all ease-in delay-5"
             />
 
             <img
               src={dune}
-              className="w-30 sm:w-48 md:w-60 h-55 sm:h-80 md:h-96 rounded-md absolute
+              className="w-55 sm:w-48 md:w-60 h-90 sm:h-80 md:h-96 rounded-md absolute
               -rotate-20 md:-rotate-10 md:bottom-0 bottom-8 -translate-x-10 sm:-translate-x-24
               md:-translate-x-36 z-20 hover:bottom-10 transition-all ease-in delay-5"
             />
 
             <img
               src={matrix}
-              className="w-30 sm:w-48 md:w-60 h-55 sm:h-80 md:h-96 rounded-md absolute
+              className="w-55 sm:w-48 md:w-60 h-90 sm:h-80 md:h-96 rounded-md absolute
               rotate-0 bottom-15 sm:bottom-5 md:bottom-10 translate-x-0 z-30
               hover:bottom-15 transition-all ease-in delay-5"
             />
 
             <img
               src={misslonely}
-              className="w-30 sm:w-48 md:w-60 h-55 sm:h-80 md:h-96 rounded-md absolute
+              className="w-55 sm:w-48 md:w-60 h-90 sm:h-80 md:h-96 rounded-md absolute
               rotate-20 bottom-8 md:bottom-0 md:rotate-10 translate-x-10 sm:translate-x-24
               md:translate-x-36 z-20 hover:bottom-10 transition-all ease-in delay-5"
             />
 
             <img
               src={swinggirls}
-              className="w-30 sm:w-48 md:w-60 h-55 sm:h-80 md:h-96 rounded-md absolute
-              rotate-20 bottom-0 sm:-bottom-16 md:-bottom-20 translate-x-20 sm:translate-x-36
+              className="w-55 sm:w-48 md:w-60 h-90 sm:h-80 md:h-96 rounded-md absolute
+              rotate-20 -bottom-5 sm:-bottom-16 md:-bottom-20 translate-x-20 sm:translate-x-36
               md:translate-x-72 z-10 hover:-bottom-5 transition-all ease-in delay-5"
             />
           </div>
