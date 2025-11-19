@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export const useWatchlistStore = create((set) => ({
+export const useWatchListStore = create((set) => ({
   watched: [],
 
   addToWatchlist: (movie) =>
