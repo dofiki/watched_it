@@ -1,24 +1,14 @@
-import { FaSearch } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar.jsx";
+import SearchBar from "../components/SearchBar.jsx";
 
 import matrix from "../assets/movie_posters/matrix.jpg";
 import ablcc from "../assets/movie_posters/all_about_lily_chou_chou.jpg";
 import dune from "../assets/movie_posters/dune.jpg";
 import misslonely from "../assets/movie_posters/miss_lonely.jpg";
 import swinggirls from "../assets/movie_posters/swing_girls.jpg";
-import { useState } from "react";
 
 function HomePage() {
   
-  const [query, setQuery] = useState("");
-  const navigate = useNavigate();
-
-  function handleSearch(){
-    if(!query.trim()) return;
-    navigate(`/search?q=${encodeURIComponent(query)}`);
-  }
-
   return (
     <>
       <div
@@ -37,35 +27,14 @@ function HomePage() {
           </p>
         </div>
 
-        <div className="pt-5 flex justify-center">
-          <div className="relative w-60 sm:w-140">
-            <input
-              type="text"
-              placeholder="enter movie name"
-              className="bg-white w-full h-10 rounded-lg p-2 pr-20 outline-0 
-              hover:outline-6 hover:outline-blue-900 transition-all ease-in delay-100
-              text-[0.8rem] md:text-[1rem]"
-              value={query}
-              onChange={(e)=>setQuery(e.target.value)}
-            />
-
-            <button
-              className="absolute right-1 top-1/2 transform -translate-y-1/2
-              flex items-center gap-2 bg-black text-white pt-2 pb-2 pl-4 pr-4
-              rounded-lg hover:scale-104 ease-in delay-75 hover:text-blue-500 transition-all"
-              onClick={handleSearch}
-            >
-              <FaSearch />
-            </button>
-          </div>
-        </div>
+        <SearchBar />
 
         <div className="absolute -bottom-22 w-full">
           <div className="relative h-96 w-full flex justify-center items-center">
             <img
               src={ablcc}
-              className="w-40 sm:w-48 md:w-60 h-75 sm:h-80 md:h-96 rounded-md absolute
-              -rotate-20 bottom-0 sm:-bottom-16 md:-bottom-20 -translate-x-20 sm:-translate-x-36
+              className="w-55 sm:w-48 md:w-60 h-75 sm:h-80 md:h-96 rounded-md absolute
+              -rotate-20 -bottom-5 sm:-bottom-16 md:-bottom-20 -translate-x-20 sm:-translate-x-36
               md:-translate-x-72 z-10 hover:-bottom-5 transition-all ease-in delay-5"
             />
 
@@ -93,7 +62,7 @@ function HomePage() {
             <img
               src={swinggirls}
               className="w-55 sm:w-48 md:w-60 h-90 sm:h-80 md:h-96 rounded-md absolute
-              rotate-20 -bottom-5 sm:-bottom-16 md:-bottom-20 translate-x-20 sm:translate-x-36
+              rotate-20 -bottom-15 sm:-bottom-16 md:-bottom-20 translate-x-20 sm:translate-x-36
               md:translate-x-72 z-10 hover:-bottom-5 transition-all ease-in delay-5"
             />
           </div>

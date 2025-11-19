@@ -32,6 +32,11 @@ export default function NavBar(){
                </li>
                <li>
                  <button className="hover:text-blue-500 transition-colors delay-75 cursor-pointer">
+                   <Link to="/watched">Watched</Link>
+                 </button>
+               </li>
+                <li>
+                 <button className="hover:text-blue-500 transition-colors delay-75 cursor-pointer">
                    <Link to="/watchlist">Watchlist</Link>
                  </button>
                </li>
@@ -48,13 +53,22 @@ export default function NavBar(){
               transition-all duration-300 
               ${hamStatus ? "max-h-60 opacity-100" : "max-h-0 opacity-0"}`}
             >
-              <ul className="text-center p-4  text-white">
+              <ul className="text-center p-10 text-white">
                 <li>
                   <Link
                     to="/"
                     className="hover:text-blue-400 transition-colors delay-75"
                   >
                     Home
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/watchlist"
+                    className="hover:text-blue-400 transition-colors delay-75"
+                  >
+                    Watched
                   </Link>
                 </li>
 
