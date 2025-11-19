@@ -4,7 +4,7 @@ export const useWatchListStore = create((set) => ({
   watched: [],
 
   addToWatchlist: (movie) =>
-    set((state) => {
+  set((state) => {
       const exists = state.watched.some(
         (m) => m.imdbID === movie.imdbID
       );
