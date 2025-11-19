@@ -4,8 +4,11 @@ import { useLocation } from "react-router-dom";
 import { IoMdTime } from "react-icons/io";
 import { MdStarRate } from "react-icons/md";
 import { MdLocalMovies } from "react-icons/md";
+import { MdOutlineMoreTime } from "react-icons/md";
+
 import StarRating from "../components/Rating.jsx";
 import SearchBar from "../components/SearchBar.jsx";
+import { useWatchlistStore } from "../store/watchlistStore.js";
 
 
 const apiKey = import.meta.env.VITE_API_KEY;
@@ -16,6 +19,7 @@ export default function SearchPage() {
 
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
+  const { watched, addToWatchlist } = useWatchlistStore();
 
   useEffect(() => {
     async function fetchMovies() {
@@ -49,10 +53,9 @@ export default function SearchPage() {
     fetchMovies();
   }, [query]);
 
-
   return (
     <div className="min-h-screen w-full pb-20 
-      [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"
+      [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)] "
     >
       <NavBar />
       <SearchBar />
@@ -64,7 +67,7 @@ export default function SearchPage() {
         </div>
       )}
 
-      <div className="flex flex-col pt-10 px-4 sm:px-10 gap-5">
+      <div className="flex flex-col pt-8 px-4 sm:px-10 gap-5">
         {movies.map((movie) => (
           <div
             key={movie.imdbID}
@@ -108,9 +111,14 @@ export default function SearchPage() {
                     Cast</div> {movie.Actors}</div>
               </div>
 
-              <div className="pt-1 pb-1">
+              <div className="flex-col pt-1 pb-1">
                     <StarRating maxStars={10} size={14} color="white" 
                       className="starRating" />
+                      <div className="flex items-center gap-1 text-gray-400 hover:text-gray-200
+                       text-[0.9rem] mt-2 bg-gray-800 w-40 p-2 rounded-2xl cursor-pointer
+                       transition-colors delay-15 justify-center"
+                       onClick={() => addToWatchlist(movie)}>
+                        <MdOutlineMoreTime size={16} /> Add to watchlist</div>
               </div>
 
             </div>

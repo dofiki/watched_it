@@ -49,7 +49,7 @@ export default function NavBar(){
              </div>
              
              <div
-              className={`absolute bg-black w-full md:hidden left-0 overflow
+              className={`absolute z-50 bg-black w-full md:hidden left-0 overflow
               transition-all duration-300 
               ${hamStatus ? "max-h-60 opacity-100" : "max-h-0 opacity-0"}`}
             >
@@ -65,7 +65,7 @@ export default function NavBar(){
 
                 <li>
                   <Link
-                    to="/watchlist"
+                    to="/watched"
                     className="hover:text-blue-400 transition-colors delay-75"
                   >
                     Watched
