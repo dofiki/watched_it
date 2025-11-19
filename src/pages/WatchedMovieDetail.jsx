@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useWatchlistStore } from "../store/watchlistStore.js";
+import { useWatchListStore } from "../store/watchListStore.js";
 import NavBar from "../components/NavBar.jsx";
 import { IoMdTime } from "react-icons/io";
 import { MdStarRate, MdLocalMovies, MdOutlineMoreTime } from "react-icons/md";
@@ -7,7 +7,7 @@ import StarRating from "../components/Rating.jsx";
 
 export default function WatchedMovieDetail() {
   const { id } = useParams();
-  const { watched } = useWatchlistStore();
+  const { watched } = useWatchListStore();
 
   const movie = watched.find((m) => m.imdbID === id);
 

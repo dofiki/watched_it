@@ -8,8 +8,7 @@ import { MdOutlineMoreTime } from "react-icons/md";
 
 import StarRating from "../components/Rating.jsx";
 import SearchBar from "../components/SearchBar.jsx";
-import { useWatchlistStore } from "../store/watchlistStore.js";
-
+import { useWatchListStore } from "../store/watchListStore.js";
 
 const apiKey = import.meta.env.VITE_API_KEY;
 
@@ -19,7 +18,7 @@ export default function SearchPage() {
 
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { watched, addToWatchlist } = useWatchlistStore();
+  const { watched, addToWatchlist } = useWatchListStore();
 
   useEffect(() => {
     async function fetchMovies() {

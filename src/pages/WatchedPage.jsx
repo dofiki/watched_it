@@ -1,9 +1,9 @@
 import NavBar from "../components/NavBar.jsx";
-import { useWatchlistStore } from "../store/watchlistStore.js";
+import { useWatchListStore } from "../store/watchListStore.js";
 import { Link } from "react-router-dom";
 
 export default function WatchedPage() {
-  const { watched } = useWatchlistStore();
+  const { watched } = useWatchListStore();
 
   return (
     <div className="min-h-screen w-full pb-20
