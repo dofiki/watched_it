@@ -1,15 +1,18 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useWatchListStore } from "../store/watchListStore.js";
 import NavBar from "../components/NavBar.jsx";
 import { IoMdTime } from "react-icons/io";
-import { MdStarRate, MdLocalMovies, MdOutlineMoreTime } from "react-icons/md";
+import { MdStarRate, MdLocalMovies } from "react-icons/md";
 import StarRating from "../components/Rating.jsx";
 
-export default function WatchedMovieDetail() {
+export default function WatchedListMovieDetail() {
   const { id } = useParams();
-  const { watched } = useWatchListStore();
-
-  const movie = watched.find((m) => m.imdbID === id);
+  const { watchlist, addToWatchlist, removeFromWatchlist } = useWatchListStore();
+  const navigate = useNavigate();
+  const movie = watchlist.find((m) => m.imdbID === id);
+   const isInWatchlist = watchlist.some(
+          (m) => m.imdbID === movie.imdbID
+        );
 
   if (!movie) {
     return <p className="text-white p-10">Movie not found in watchlist.</p>;
@@ -64,13 +67,23 @@ export default function WatchedMovieDetail() {
                     </div>
       
                     <div className="flex-col pt-1 pb-1">
-                          <StarRating maxStars={10} size={14} color="white" 
-                            className="starRating" />
-                            <div className="flex items-center gap-1 text-gray-400 hover:text-gray-200
-                             text-[0.9rem] mt-2 bg-gray-800 w-40 p-2 rounded-2xl cursor-pointer
-                             transition-colors delay-15 justify-center"
-                             onClick={() => addToWatchlist(movie)}>
-                              <MdOutlineMoreTime size={16} /> Add to watchlist</div>
+                        <StarRating maxStars={10} size={14} color="white" className="starRating" />
+                            
+                    <div className={`flex items-center gap-1 text-[0.9rem] mt-2 w-55 p-2 rounded-2xl cursor-pointer 
+                      transition-colors delay-15 justify-center
+                      ${isInWatchlist ? "bg-red-900 text-white" : "bg-gray-800 text-gray-400"}`}
+                      
+                      onClick={() => {
+                      if (isInWatchlist) {
+                        removeFromWatchlist(movie.imdbID);
+                        navigate("/watchlist");
+                      } else {
+                        addToWatchlist(movie);
+                      }
+                    }}>
+                    {isInWatchlist ? " Remove from Watchlist" : "Add to Watchlist"}
+                  </div>
+
                     </div>
       
                   </div>

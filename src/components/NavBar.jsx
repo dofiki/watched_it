@@ -4,7 +4,6 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-
 export default function NavBar(){
 
     const[hamStatus,setHamStatus] = useState(false);

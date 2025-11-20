@@ -1,15 +1,20 @@
 import { create } from "zustand";
 
 export const useWatchListStore = create((set) => ({
-  watched: [],
+  watchlist: [],
 
   addToWatchlist: (movie) =>
   set((state) => {
-      const exists = state.watched.some(
+      const exists = state.watchlist.some(
         (m) => m.imdbID === movie.imdbID
       );
-      if (exists) return state; // no changes
+      if (exists) return state; 
 
-      return { watched: [...state.watched, movie] };
+      return { watchlist: [...state.watchlist, movie] };
     }),
+
+    removeFromWatchlist: (id) =>
+      set((state) =>({
+        watchlist: state.watchlist.filter((m) => m.imdbID !== id)
+      }))
 }));
