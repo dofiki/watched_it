@@ -14,14 +14,15 @@ export default function SearchPage() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    async function fetchMovies() {
-      if (!query) return;
+  if (!query) return;
 
-      setLoading(true);
+  const controller = new AbortController(); 
 
+  async function fetchMovies() {
+    setLoading(true);
+    try {
       const res = await fetch(
-        `https://www.omdbapi.com/?apikey=${apiKey}&s=${query}`
-      );  
+        `https://www.omdbapi.com/?apikey=${apiKey}&s=${query}`);
       const data = await res.json();
 
       if (!data.Search) {
@@ -32,34 +33,39 @@ export default function SearchPage() {
       const detailedMovies = await Promise.all(
         data.Search.map(async (movie) => {
           const res2 = await fetch(
-            `https://www.omdbapi.com/?apikey=${apiKey}&i=${movie.imdbID}&plot=short`
-          );
+            `https://www.omdbapi.com/?apikey=${apiKey}&i=${movie.imdbID}&plot=short`);
           return await res2.json();
         })
       );
 
       setMovies(detailedMovies);
+    } catch (err) {
+      if (err.name !== "AbortError") {
+        console.error(err);
+      }
+    } finally {
       setLoading(false);
     }
+  }
 
-    fetchMovies();
-  }, [query]);
+  fetchMovies();
+
+}, [query]);
+
 
   return (
-    <div className="min-h-screen w-full pb-20 
-      [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)] "
-    >
+    
+    <div className="absolute min-h-screen w-full pb-20 bg-[#000000] 
+    bg-[radial-gradient(#ffffff33_2px,#000000_2px)] bg-[size:30px_30px]">  
       <NavBar />
       <SearchBar />
-      <Movie movies={movies} />
-      {loading && (
+        {loading && (
         <div className="flex justify-center items-center h-40">
             <div className="w-10 h-10 border-4 border-gray-300 border-t-blue-500 
             rounded-full animate-spin"></div>
         </div>
       )}
-
-      
+      <Movie movies={movies} />      
     </div>
   );
 }

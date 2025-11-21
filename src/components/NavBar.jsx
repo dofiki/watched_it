@@ -19,7 +19,7 @@ export default function NavBar(){
              className="text-xl sm:text-2xl flex gap-2 items-center hover:text-blue-500
              transition-colors delay-75 cursor-pointer"
            >
-             <RiMovie2Fill /> <Link to="/">watchedit</Link>
+             <RiMovie2Fill /> <Link to="/">watched<sapn className="text-blue-500">it</sapn></Link>
            </div>
  
            <div>
@@ -52,11 +52,11 @@ export default function NavBar(){
               transition-all duration-300 
               ${hamStatus ? "max-h-60 opacity-100" : "max-h-0 opacity-0"}`}
             >
-              <ul className="text-center p-10 text-white">
+              <ul className="text-center p-10 text-white ">
                 <li>
                   <Link
                     to="/"
-                    className="hover:text-blue-400 transition-colors delay-75"
+                    className="hover:text-blue-400 transition-colors delay-75 p-2"
                   >
                     Home
                   </Link>
@@ -65,7 +65,7 @@ export default function NavBar(){
                 <li>
                   <Link
                     to="/watched"
-                    className="hover:text-blue-400 transition-colors delay-75"
+                    className="hover:text-blue-400 transition-colors delay-75  p-2"
                   >
                     Watched
                   </Link>
@@ -74,7 +74,7 @@ export default function NavBar(){
                 <li>
                   <Link
                     to="/watchlist"
-                    className="hover:text-blue-400 transition-colors delay-75"
+                    className="hover:text-blue-400 transition-colors delay-75 p-2"
                   >
                     Watchlist
                   </Link>
