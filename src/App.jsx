@@ -15,8 +15,7 @@ function App() {
       <Route path="/watchlist" element={<WatchListPage />} />
       <Route path="/watchlist/:id" element={<WatchListMovieDetail />} />
       <Route path="/watched" element={<WatchedPage />} />
-      <Route path="/watched/:id" element={<WatchedListMovieDetail/>} />
-
+      <Route path="/watched/:id" element={<WatchedListMovieDetail />} />
     </Routes>
   );
 }

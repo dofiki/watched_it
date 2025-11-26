@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
-*{
-      font-family: "Stack Sans Notch", sans-serif;
+* {
+  font-family: "Stack Sans Notch", sans-serif;
 }
 
-body{
-            background-color: black;
+body {
+  background-color: black;
 }

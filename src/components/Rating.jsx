@@ -3,14 +3,13 @@ import { useState, useEffect } from "react";
 export default function StarRating({
   defaultRating = 0,
   maxStars = 6,
-  color = "text-blue-500",
+  color = "text-green-800",
   size = "w-8 h-8",
   onSetRating = () => {},
 }) {
   const [rating, setRating] = useState(defaultRating);
   const [tempRating, setTempRating] = useState(0);
 
-  // 🔥 IMPORTANT: Sync internal state when parent passes updated rating
   useEffect(() => {
     setRating(defaultRating);
   }, [defaultRating]);
@@ -18,7 +17,7 @@ export default function StarRating({
   function handleRating(id) {
     const newRating = id === rating ? 0 : id;
     setRating(newRating);
-    onSetRating(newRating); // notify parent/store
+    onSetRating(newRating);
   }
 
   return (
