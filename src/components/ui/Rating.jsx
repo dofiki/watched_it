@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 export default function StarRating({
   defaultRating = 0,
   maxStars = 6,
-  color = "text-green-800",
+  color = "text-blue-700",
   size = "w-8 h-8",
   onSetRating = () => {},
 }) {

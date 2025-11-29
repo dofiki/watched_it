@@ -1,9 +1,9 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useState, useContext, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 
-const ThemeContext = createContext();
+export const ThemeContext = createContext();
 
-export function ThemeProvider({ children }) {
+export  function ThemeProvider({ children }) {
   // initialize theme from localstorage (if availabe)
   // otherwise default to true
   const [darkTheme, setDarkTheme] = useState(() => {
@@ -32,9 +32,4 @@ export function ThemeProvider({ children }) {
       {children}
     </ThemeContext.Provider>
   );
-}
-
-// for consumption, custom hook :)
-export function useTheme() {
-  return useContext(ThemeContext);
 }

@@ -1,11 +1,11 @@
 import NavBar from "../components/NavBar.jsx";
-import { useStore } from "../store/store.js";
 import { Link } from "react-router-dom";
-import { useTheme } from "../context/ThemeContext.jsx";
+import { useTheme } from "../hooks/useTheme.js";
+import { useAuth } from "../hooks/useAuth.js";
 
 export default function WatchListPage() {
   const {darkTheme} = useTheme();
-  const { watchlist } = useStore();
+  const {watchlist} = useAuth();
 
   return (
     <div
@@ -21,13 +21,13 @@ export default function WatchListPage() {
       <NavBar />
 
       <div className="flex justify-center flex-wrap gap-4 mt-10">
-        {watchlist.length === 0 && (
+        {watchlist?.length === 0 && (
           <p className="text-gray-400 text-center w-full">
             No movies in watchlist.
           </p>
         )}
 
-        {watchlist.map((movie) => (
+        {watchlist?.map((movie) => (
           <Link to={`/watchlist/${movie.imdbID}`} key={movie.imdbID}>
             <div className="text-white p-4 h-70 flex-col text-center justify-center cursor-pointer">
               <img src={movie.Poster} className="h-56 rounded-lg" />

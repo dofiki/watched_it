@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import NavBar from "../components/NavBar.jsx";
+import NavBar from "../components/navbar.jsx";
 import { useLocation } from "react-router-dom";
-import { useTheme } from "../context/ThemeContext.jsx";
-import SearchBar from "../components/SearchBar.jsx";
+import { useTheme } from "../hooks/useTheme.js";
+import SearchBar from "../components/ui/SearchBar.jsx";
 import Movie from "../components/Movie.jsx";
+import LoadingSpinner from "../components/ui/LoadingSpinner.jsx";
 
 const apiKey = import.meta.env.VITE_API_KEY;
 
@@ -64,14 +65,7 @@ export default function SearchPage() {
     >
       <NavBar />
       <SearchBar />
-      {loading && (
-        <div className="flex justify-center items-center h-40">
-          <div
-            className="w-10 h-10 border-4 border-gray-300 border-t-blue-500 
-            rounded-full animate-spin"
-          ></div>
-        </div>
-      )}
+      {loading && <LoadingSpinner />}
       <Movie movies={movies} />
     </div>
   );

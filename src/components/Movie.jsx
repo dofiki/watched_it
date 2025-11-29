@@ -1,29 +1,65 @@
 import { IoMdTime } from "react-icons/io";
 import { MdStarRate, MdLocalMovies } from "react-icons/md";
-import StarRating from "../components/Rating.jsx";
-import { useStore } from "../store/store.js";
-import { useTheme } from "../context/ThemeContext.jsx";
+import StarRating from "./ui/Rating.jsx";
+import { useTheme } from "../hooks/useTheme";
+import { useAuth } from "../hooks/useAuth";
+import { FaCircleInfo } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 export default function Movie({ movies }) {
+  const { darkTheme } = useTheme();
   const {
+    user,
     watchlist,
     watchedlist,
-    addToWatchlist,
-    removeFromWatchlist,
-    setMovieRating,
-  } = useStore();
+    updateUserData,
+  } = useAuth();
 
-  const { darkTheme } = useTheme();
+  function handleAddtoWatchList(movie){
+    if(!user) return;
+    updateUserData({ watchlist: [...(watchlist ?? []), movie] });
+  }
+
+  function handleRemovefromWatchList(movieId){
+    if(!user) return;
+    updateUserData({watchlist: (watchlist ?? []).filter((m)=>m.imdbID !== movieId)})
+  }
+
+  function handleMovieRating(movie, rating){
+    if(!user) return;
+    let newWatchedList = [...(watchedlist ?? [])];
+
+    if(rating === 0){
+      //remove if 0
+      newWatchedList = watchedlist.filter((m)=>m.imdbID !== movie.imdbID)
+
+    }else{
+      //find the index of movie 
+      const index = newWatchedList.findIndex((m)=> m.imdbID === movie.imdbID);
+      if(index !== -1){
+        //index already exists then just add rating to the movie
+        newWatchedList[index]={...movie, rating};
+      }else{
+        newWatchedList.push({...movie, rating});
+      }
+    }
+
+    //remove from watchlist if it exist there after you rated it
+    const newWatchList = (watchlist ?? []).filter((m)=>m.imdbID !== movie.imdbID)
+
+    //at last update firestore
+    updateUserData({watchedlist: newWatchedList, watchlist: newWatchList})
+
+  }
 
   return (
     <div className="flex flex-col pt-8 px-4 sm:px-10 gap-5">
       {movies.map((movie) => {
-        const isInWatchlist = watchlist.some((m) => m.imdbID === movie.imdbID);
+        
+      const isInWatchlist = (watchlist ?? []).some((m) => m.imdbID === movie.imdbID);
+      const isWatched = (watchedlist ?? []).some((m) => m.imdbID === movie.imdbID);
+      const savedRating = (watchedlist ?? []).find((m) => m.imdbID === movie.imdbID)?.rating ?? 0;
 
-        const isWatched = watchedlist.some((m) => m.imdbID === movie.imdbID);
-
-        const savedRating =
-          watchedlist.find((m) => m.imdbID === movie.imdbID)?.rating ?? 0;
 
         return (
           <div
@@ -95,14 +131,16 @@ export default function Movie({ movies }) {
                 </div>
               </div>
 
-              <div className="flex-col pt-1 pb-1">
-                <StarRating
-                  defaultRating={savedRating}
-                  onSetRating={(rating) => setMovieRating(movie, rating)}
-                />
+              {user ? (
+                <>
+                  <div className="flex-col pt-1 pb-1 ">
+                    <StarRating
+                      defaultRating={savedRating}
+                      onSetRating={(rating) => handleMovieRating(movie, rating)}
+                    />
 
-                <div
-                  className={`flex items-center gap-1 text-[0.9rem] mt-2 w-55 p-2 rounded-2xl 
+                    <div
+                      className={`flex items-center gap-1 text-[0.9rem] mt-2 w-55 p-2 rounded-2xl 
                     justify-center transition-colors delay-15
                     ${
                       isWatched
@@ -111,22 +149,34 @@ export default function Movie({ movies }) {
                           ? `${darkTheme ? "bg-red-800 text-white" : "bg-red-800 text-white"} hover:bg-red-900 cursor-pointer`
                           : `${darkTheme ? "bg-gray-800 text-gray-400 hover:text-white" : "bg-gray-800 text-white hover:text-gray-400"} cursor-pointer`
                     }`}
-                  onClick={() => {
-                    if (isWatched) return;
-                    if (isInWatchlist) {
-                      removeFromWatchlist(movie.imdbID);
-                    } else {
-                      addToWatchlist(movie);
-                    }
-                  }}
-                >
-                  {isWatched
-                    ? "Watched"
-                    : isInWatchlist
-                      ? "Remove from Watchlist"
-                      : "Add to Watchlist"}
-                </div>
-              </div>
+                      onClick={() => {
+                        if (isWatched) return;
+                        if (isInWatchlist) {
+                          handleRemovefromWatchList(movie.imdbID);
+                        } else {
+                          handleAddtoWatchList(movie);
+                        }
+                      }}
+                    >
+                      {isWatched
+                        ? "Watched"
+                        : isInWatchlist
+                          ? "Remove from Watchlist"
+                          : "Add to Watchlist"}
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <p className="text-gray-500 flex gap-2 items-center">
+                    <FaCircleInfo size={16} />
+                    <Link to="/login" className="text-blue-800 underline">
+                      Login
+                    </Link>{" "}
+                    to add to list or rate the movie.
+                  </p>
+                </>
+              )}
             </div>
           </div>
         );

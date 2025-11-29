@@ -1,6 +1,6 @@
 import { FaSun } from "react-icons/fa";
 import { FaMoon } from "react-icons/fa";
-import { useTheme } from "../context/ThemeContext";
+import { useTheme } from "../../hooks/useTheme"
 
 export default function ThemeButton() {
   const { darkTheme, toggleTheme } = useTheme();
