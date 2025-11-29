@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { userSchema } from "../schemas/userSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import NavBar from "../components/navbar";
+import NavBar from "../components/NavBar.jsx";
 import { loginUser } from "../services/firebaseAuth";
 import { FaUser } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";

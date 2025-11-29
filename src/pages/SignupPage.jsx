@@ -1,5 +1,5 @@
 import { useTheme } from "../hooks/useTheme.js";
-import NavBar from '../components/navbar';
+import NavBar from '../components/NavBar.jsx';
 import { Link, useNavigate } from 'react-router-dom';
 import { userSchema } from '../schemas/userSchema';
 import { zodResolver } from '@hookform/resolvers/zod';

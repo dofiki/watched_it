@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import NavBar from "../components/navbar.jsx";
+import NavBar from "../components/NavBar.jsx";
 import { useLocation } from "react-router-dom";
 import { useTheme } from "../hooks/useTheme.js";
 import SearchBar from "../components/ui/SearchBar.jsx";

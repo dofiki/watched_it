@@ -1,6 +1,5 @@
-import NavBar from "../components/navbar.jsx";
+import NavBar from "../components/NavBar.jsx";
 import SearchBar from "../components/ui/SearchBar.jsx";
-
 import matrix from "../assets/movie_posters/matrix.jpg";
 import ablcc from "../assets/movie_posters/all_about_lily_chou_chou.jpg";
 import dune from "../assets/movie_posters/dune.jpg";
